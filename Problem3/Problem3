@@ -1,0 +1,35 @@
+
+def treeBuilder(n, theRange, prev, maximum):
+    for x in theRange:
+
+        if(n%x == 0):
+            check = True
+            for y in prev:
+                if(x%y == 0):
+                    check = False
+            if check == True:
+                prev.append(x)
+                total = 1
+                for z in prev:
+                    total = total * z
+                if(total == maximum):
+                    print("The largest prime factor is: " + str(max(prev)))
+                    exit(0)
+
+
+                treeBuilder(n/x, range(x, maximum+1), prev, maximum)
+                return
+    check = True
+    for y in prev:
+        if (x % y == 0):
+            check = False
+    if check == True:
+        prev.append(x)
+    print("The largest prime factor is: " + str(max(prev)))
+
+def getTheFactors(n):
+    treeBuilder(n,range(2,n+1), [], n)
+
+
+getTheFactors(600851475143)
+
