@@ -1,0 +1,22 @@
+import math
+
+
+def numberBelow(a, b):
+    return math.trunc((a - 1) / b)
+
+
+def summation(n):
+
+    return n*(n + 1) / 2
+
+
+def main(a, b, c ):
+    addA = (a * (summation(numberBelow(c, a))))
+
+    addB = (b * (summation(numberBelow(c, b))))
+
+    addTheMult = (a*b) * (summation(numberBelow(c,(a*b))))
+
+    return (addA + addB) - addTheMult
+
+print(main(5, 3, 1000))
