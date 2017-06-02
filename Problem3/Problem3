@@ -1,5 +1,5 @@
-
-def treeBuilder(n, theRange, prev, maximum):
+import time
+def treeBuilder(n, theRange, prev, maximum, startTime):
     for x in theRange:
 
         if(n%x == 0):
@@ -12,12 +12,14 @@ def treeBuilder(n, theRange, prev, maximum):
                 total = 1
                 for z in prev:
                     total = total * z
-                if(total == maximum):
+                if(maximum/total<x):
                     print("The largest prime factor is: " + str(max(prev)))
+                    print(time.time() - startTime)
                     exit(0)
 
 
-                treeBuilder(n/x, range(x, maximum+1), prev, maximum)
+
+                treeBuilder(n/x, range(x, maximum+1), prev, maximum, startTime)
                 return
     check = True
     for y in prev:
@@ -27,9 +29,10 @@ def treeBuilder(n, theRange, prev, maximum):
         prev.append(x)
     print("The largest prime factor is: " + str(max(prev)))
 
-def getTheFactors(n):
-    treeBuilder(n,range(2,n+1), [], n)
 
+def getTheFactors(n):
+
+    startTime = time.time()
+    treeBuilder(n,range(2,n+1), [], n, startTime)
 
 getTheFactors(600851475143)
-
