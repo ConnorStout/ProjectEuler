@@ -1,0 +1,33 @@
+import math
+
+def checkForPalenDrome(n):
+    a = list(str(n))
+    b = int(len(a))
+    for x in range(0, math.trunc(b/2)):
+        first  = a.pop(0)
+        last = a.pop(len(a)-1)
+
+        if(first != last):
+            return False
+    return True
+
+def findThePalen():
+    currMax = 0
+    currMaxString = ""
+    currMinFactor = 0
+    for x in range(999,99,-1):
+        if(x<currMinFactor):
+            print(currMaxString)
+            return currMax
+
+        for y in range(x,99,-1):
+           # print(str(x) + "*" + str(y))
+            if(checkForPalenDrome(x * y) == True):
+                if((x*y)>currMax):
+                    currMax = (x*y)
+                    currMaxString = (str(x) + "*" + str(y))
+                    currMinFactor = min(x,y)
+    print(currMaxString)
+    return currMax
+
+print(findThePalen())

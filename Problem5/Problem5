@@ -1,0 +1,51 @@
+import math
+import time
+def isPrime(n):
+    for x in range(2,math.trunc(n)):
+        if n%x == 0:
+            return False
+    return True
+
+def getFirstFactor(n):
+    for x in range(2,math.trunc(n)):
+        if n%x == 0:
+            return x
+
+
+def factorize(n):
+
+    if isPrime(n):
+        return [n]
+    else:
+        a = getFirstFactor(n)
+        totalList = [a]
+        totalList = totalList + factorize(n/a)
+
+        return totalList
+
+
+def getAllFactorsNeeded(n):
+    totalList = []
+    for x in range(2, n):
+        if isPrime(x):
+            totalList.append(x)
+
+        else:
+            factors = factorize(x)
+            a = x
+            for y in totalList:
+                if a % y == 0:
+                    a = a/y
+
+            totalList = totalList + factorize(a)
+    total = 1
+    for x in totalList:
+        total = total*x
+
+    return total
+
+a = time.time()
+print(getAllFactorsNeeded(1000))
+print(time.time()-a)
+
+

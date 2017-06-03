@@ -1,0 +1,19 @@
+
+import time
+def total(n):
+    totalList = []
+    for x in range(2,n+1):
+        totalList.append(x)
+    for y in range(0, len(totalList)):
+        a = totalList[y]
+        for z in range(y+1,len(totalList)):
+            if(totalList[z]%a == 0):
+                totalList[z] = totalList[z]/a
+    final = a
+    for x in totalList:
+       final = final * x
+    return final
+
+a = time.time()
+print(total(1000))
+print(time.time()-a)
