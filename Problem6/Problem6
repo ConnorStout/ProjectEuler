@@ -1,0 +1,20 @@
+import math
+
+def addItAll(n):
+    finalAddition = 0
+    finalSquare = 0
+
+    for x in range(n+1):
+        finalAddition =  x + finalAddition
+
+        finalSquare = math.pow(x,2) + finalSquare
+
+    return math.pow(finalAddition,2)-finalSquare
+
+
+
+print(addItAll(100))
+
+
+
+
