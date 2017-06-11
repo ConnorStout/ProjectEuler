@@ -1,0 +1,23 @@
+import time
+def getPrimes(n):
+
+
+    prevPrimes = []
+    count = 2
+    while(len(prevPrimes) < n):
+        check = True
+        for x in prevPrimes:
+            if count%x == 0:
+                check = False
+                break
+
+        if check == True:
+            prevPrimes.append(count)
+
+        count+=1
+    return prevPrimes.pop()
+
+
+a = time.time()
+print(getPrimes(10001))
+print((time.time()-a))

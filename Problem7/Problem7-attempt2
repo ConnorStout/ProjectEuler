@@ -1,0 +1,23 @@
+import math
+import time
+def getnthPrime(n):
+    totalArray = []
+    for x in range(2,110000):
+        totalArray.append(x)
+
+    for x in totalArray:
+        if(totalArray.index(x) == n):
+            return x
+        for y in totalArray:
+            if(y%x == 0 and x != y):
+                totalArray.remove(y)
+
+
+
+
+    print("Sorry my program can't solve that in a reasonable time")
+
+
+a = time.time()
+print(getnthPrime(10001))
+print(time.time()-a)
