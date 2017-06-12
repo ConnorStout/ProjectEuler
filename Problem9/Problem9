@@ -1,0 +1,19 @@
+import math
+import time
+
+def triplets(n):
+
+    for x in range(1,n):
+
+        for y in range(x,n):
+
+            total = (x*x)+(y*y)
+            if(math.sqrt(total).is_integer()):
+                if(x+y+int(math.sqrt(total)) == n):
+                    return (str(x) + " " + str(y) + " " + str(math.sqrt(total)))
+
+    return "doesn't exist"
+
+a = time.time()
+print(triplets(1000))
+print((time.time()-a))
