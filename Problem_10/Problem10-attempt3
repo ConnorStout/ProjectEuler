@@ -1,0 +1,27 @@
+import time
+def getPrimes(n):
+    originalList = list(range(2, n))
+    finalSet = set(list(range(2, n)))
+
+    x = 2
+    finalList = []
+    while x:
+
+        print(x)
+        newList = originalList[(x-2)::x]
+        print(newList)
+        finalSet = finalSet - set(newList)
+        if(len(finalSet) == 0):
+            finalList.append(x)
+            break
+
+        finalList.append(x)
+        x = min(finalSet)
+
+
+
+    print((finalList) + list(finalSet))
+    print(sum((finalList) + list(finalSet)))
+a = time.time()
+getPrimes(1000000)
+print(time.time()-a)

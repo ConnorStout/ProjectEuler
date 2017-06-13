@@ -1,0 +1,35 @@
+import time
+def getPrimes(n):
+    total = 0
+    originalList = list(range(2, n))
+    del originalList[::2]
+    print(originalList)
+    del originalList[::3]
+    print(originalList)
+    originalList.insert(0,3)
+    originalList.insert(0,2)
+
+
+
+    for x in originalList[2::]:
+        print(x)
+        if(x*x > n):
+            break
+        inc = x*2
+        for y in range((int(n))):
+            new = (inc*y) + x*x
+            print(new)
+            try:
+                originalList.remove(new)
+            except ValueError:
+                pass  # do nothing!
+            if(new>n):
+                break
+    print(originalList)
+    print(sum(originalList))
+
+
+
+a = time.time()
+getPrimes(2000000)
+print(time.time()-a)

@@ -1,0 +1,23 @@
+import time
+def getPrimes(n):
+    total = 0
+    originalList = list(range(2, n))
+
+
+    finalList = []
+    inc = 0
+    while len(originalList) > 2:
+        print(originalList[0])
+
+        finalList.append(originalList[0])
+        del originalList[::originalList[0]]
+        print(originalList)
+        inc = inc+1
+    finalList.append(originalList[0])
+    print(finalList)
+    print(sum(finalList))
+
+
+a = time.time()
+getPrimes(100)
+print(time.time()-a)

@@ -1,0 +1,20 @@
+import time
+def getPrimes(n):
+
+    fullList = list(range(2, n))
+    del fullList[::2]
+    print(fullList)
+    total = 2
+    for x in fullList:
+        print(x)
+        total+=x
+        for y in fullList[fullList.index(x)+1:]:
+            if(y%x == 0):
+                fullList.remove(y)
+
+    print(fullList)
+    return(total)
+
+a = time.time()
+print(getPrimes(2000000))
+print(time.time()-a)
