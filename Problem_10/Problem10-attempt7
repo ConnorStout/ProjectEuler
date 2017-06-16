@@ -1,0 +1,32 @@
+import time
+
+def getNextPrime(n):
+    next = n[-1]
+    while next:
+        next+=1
+        check = True
+        for x in n:
+            if(next%x == 0):
+                check = False
+                break
+        if(check == True):
+
+            return next
+def getPrimes(n):
+    finalList = list(range(1, n))
+    originalList = list(range(1, n))
+
+    allIndexes = []
+    nextPrime = 2
+    primes = []
+    while(((nextPrime*nextPrime)<n)):
+        finalList = set(finalList) -  set(originalList[(nextPrime*2)-1::nextPrime])
+        primes.append(nextPrime)
+        nextPrime = getNextPrime(primes)
+        finalList = list(set(finalList))
+    print(sum(finalList)-1)
+
+
+a = time.time()
+getPrimes(2000000)
+print(time.time()-a)

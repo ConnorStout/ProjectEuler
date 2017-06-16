@@ -31,5 +31,5 @@ def getPrimes(n):
 
 
 a = time.time()
-getPrimes(2000000)
+getPrimes(100)
 print(time.time()-a)
