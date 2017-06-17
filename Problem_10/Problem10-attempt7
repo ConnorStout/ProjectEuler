@@ -24,6 +24,7 @@ def getPrimes(n):
         primes.append(nextPrime)
         nextPrime = getNextPrime(primes)
         finalList = list(set(finalList))
+    print(finalList)
     print(sum(finalList)-1)
 
 
