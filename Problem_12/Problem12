@@ -1,0 +1,30 @@
+
+
+
+def generateTriangles():
+    for x in range(2,10000):
+        total = sum(list(range(x)))
+        divs = getNumberOfDivisors(total)
+        print(str(total) + " " + str(divs))
+
+
+
+
+def getNumberOfDivisors(n):
+    if(n == 1):
+        return 1
+    total = []
+    check = True
+    inc = 1
+    while(check):
+        inc += 1
+        if(n%inc == 0):
+            check = False
+    print(inc)
+    print(n/inc)
+    total.append(inc)
+    total.append(getNumberOfDivisors(n/inc))
+    return total
+
+
+generateTriangles()

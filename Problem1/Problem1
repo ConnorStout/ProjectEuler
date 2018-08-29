@@ -8,7 +8,7 @@ def summation(n):
 
     return n*(n + 1) / 2
 
-def main(a, b, c ):
+def main(a, b, c):
 
     return (a * (summation(numberBelow(c, a)))) + (b * (summation(numberBelow(c, b)))) - (a*b) * (summation(numberBelow(c,(a*b))))
 

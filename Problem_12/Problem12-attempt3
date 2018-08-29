@@ -1,0 +1,60 @@
+import math
+def mainDriver():
+    total = 0
+    mint = math.factorial(500) - 1
+    print(mint)
+    for x in range(0,10000000000000000000000000000000000000000000):
+        total = total + x;
+        check = False
+        #print(total)
+        min = math.factorial(500)-1
+
+        #print(total)
+        if(total > min):
+            s = getNumberOfFactors(total)
+            print("len = " + str(len(s)))
+            if((len(s)) > 499):
+                check = True
+                break
+        if(check == True):
+            break
+
+def getNumberOfFactors(n):
+    s = []
+    for x in range(1, math.ceil(n/2)+1):
+        if(n%x == 0):
+            s.append(x)
+    #print(s)
+    return s
+
+def treeOfFactors(n):
+    for x in range(2,math.ceil(math.sqrt(n))):
+        if(n%x == 0):
+            ret = [x,n]
+            #print(x)
+            #print(n)
+            return ret + treeOfFactors(int(n/x))
+    return [n]
+
+def refineList(input):
+    newInput = input
+    newInput.sort()
+    finalList = []
+    while(newInput != []):
+        temp = newInput.pop()
+        finalList.append(temp)
+        new = temp
+        #print(temp)
+        if (newInput == []):
+            break
+        while newInput[len(newInput)-1] == temp:
+            new = new*temp
+            newInput.pop()
+            finalList.append(new)
+            if(newInput == []):
+                break
+    print(finalList)
+    return finalList
+
+
+mainDriver()

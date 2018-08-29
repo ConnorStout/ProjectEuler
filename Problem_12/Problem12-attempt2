@@ -1,0 +1,35 @@
+import math
+
+def getTriangles():
+    total = 0
+    for x in range(1, 1000000):
+        total = total + x
+        #count = getFactors(499999500)
+
+
+
+
+        count = getFactors(total)
+
+        if(count > 300):
+            print(total)
+            print("the count was: " + str(count))
+
+
+
+def getFactors(n):
+    if(n%210 != 0 or n<17907120):
+        return 0
+
+    count = 0
+    for x in range(1, int(n/2)+1):
+
+        if(n%x == 0):
+            count = count + 1
+    return count+1
+
+
+
+
+
+getTriangles()

@@ -1,0 +1,28 @@
+
+import numpy as np
+width = 1
+final_width = 2+1
+
+val_arr = np.zeros(final_width);
+print(val_arr)
+
+while width<final_width:
+    val_arr[0] = val_arr[0]+1
+    print("starting val = "+str(val_arr))
+    for x in range(0,width):
+
+        print("here")
+        print(x)
+        print("val of pos "+ str(x) + " is " +str(val_arr[x-1])+ " + "+str(val_arr[x-2]))
+        print(val_arr)
+        val_arr[x] = (val_arr[x-1]+val_arr[x-2])
+        print(val_arr)
+    val_arr[width] = val_arr[width-1]*2
+    print("after step 1")
+    print(val_arr)
+    width = width+1
+
+
+
+
+
