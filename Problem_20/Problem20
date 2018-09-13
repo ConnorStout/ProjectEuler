@@ -1,0 +1,6 @@
+
+import math
+a = math.factorial(100)
+b = (list(str(a)))
+print(b)
+print(sum(list(map(int, b))))

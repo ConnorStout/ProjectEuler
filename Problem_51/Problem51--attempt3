@@ -1,0 +1,80 @@
+import time
+def getPrimes(n):
+    f = open('primes.txt', 'r')
+    input = f.readlines()
+    f.close()
+    prevPrimes = [i.replace('\"', '').split(',') for i in input][0]
+    prevPrimes.pop()
+    prevPrimes = [int(i) for i in prevPrimes]
+
+    count = prevPrimes[-1]
+    while(len(prevPrimes) < n):
+        check = True
+        for x in prevPrimes:
+            if count%x == 0:
+                check = False
+                break
+
+        if check == True:
+            prevPrimes.append(count)
+
+        count+=1
+    return prevPrimes
+
+def getCombos(length):
+    gened = list(range(0, (2 ** length)-1))
+    array = []
+    for x in gened:
+        array = array + [str(bin(x)[2:].zfill(length))]
+    return array[1:]
+def initDict(schema):
+
+    dict = {}
+    for x in schema:
+        dict[str(x.replace('1', str(y)))] = []
+    return dict
+def createAugmentedSchema(num, schema):
+    newStr = ''
+    checkList = []
+    for x in range(0,len(num)):
+        if(schema[x] == '1'):
+            newStr = newStr + num[x]
+        else:
+            newStr = newStr + '*'
+            checkList = checkList + [num[x]]
+    if(checkList.count(checkList[0]) == len(checkList)):
+        return newStr
+    else:
+        return ''
+
+def populateNewSchema(dict,schema, num):
+    for x in schema:
+        newSch = createAugmentedSchema(num,x)
+        if(newSch != ''):
+            if (newSch in dict):
+                dict[newSch] = dict[newSch] + [num]
+                if (len(dict[newSch]) == 8):
+                    print("the answer is : ")
+                    print(x)
+                    print(' with val ')
+                    print(dict[newSch])
+                    return True
+
+            else:
+                dict[newSch] = [num]
+    return False
+
+def Solve():
+    schema = getCombos(6)
+    dict = {}
+    primes = getPrimes(80000)
+    for x in primes:
+        if(x > 99999 and x<1000000):
+            x = str(x)
+            finished = populateNewSchema(dict, schema,x)
+            if(finished == True):
+                break
+
+start = time.time()
+Solve()
+print('in '+str(time.time()-start)+ ' s')

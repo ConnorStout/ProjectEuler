@@ -1,0 +1,65 @@
+f = open('data2.txt', 'r')
+input = f.readlines()
+f.close()
+newList = []
+
+
+myList = [i.split(' ') for i in input]
+data = []
+for x in myList:
+
+    data.append(list(map(int, x)))
+print(data)
+
+
+
+class node:
+
+    def __init__(self, va, ln,rn,row,col,largestPath,pa):
+        self.val = va
+        self.rightNode = rn
+        self.leftNode = ln
+        self.ro= row
+        self.co = col
+        self.lp = largestPath
+        self.path = pa
+
+max = 0
+
+def populate(currNode):
+    print(str(currNode.val) + " " + str(currNode.ro) + ' '+ str(currNode.lp+currNode.val))
+    currNode.lp = currNode.lp+currNode.val
+    currNode.path = currNode.path + [currNode.val]
+    if(currNode.lp > max):
+        global max
+        global maxPath
+        maxPath = currNode.path
+        max = currNode.lp
+    if(currNode.ro<len(data)-1):
+
+        newNode = node(data[currNode.ro + 1][currNode.co],None,None,currNode.ro + 1,currNode.co,currNode.lp,currNode.path)
+        currNode.leftNode = newNode
+        populate(newNode)
+
+
+        newNode2 = node(data[currNode.ro+1][currNode.co+1],None,None,currNode.ro + 1,currNode.co+1,currNode.lp,currNode.path)
+        currNode.leftNode = newNode
+        populate(newNode2)
+
+
+
+
+
+root = node(data[0][0],None,None,0,0,data[0][0],[0])
+populate(root)
+print(max)
+print(maxPath)
+print(sum(maxPath))
+
+
+
+
+
+
+
+

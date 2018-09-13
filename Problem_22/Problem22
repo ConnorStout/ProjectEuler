@@ -1,0 +1,26 @@
+f = open('names.txt', 'r')
+input = f.readlines()
+f.close()
+newList = []
+
+
+myList = [i.replace('\"','').split(',') for i in input][0]
+
+myList.sort()
+print(myList)
+
+total = 0
+count = 1
+for x in myList:
+    tempCount = 0
+    for y in x:
+        tempCount = tempCount + (ord(y)-64)
+    total = total + (tempCount * count)
+    count = count+1
+print(total)
+
+
+
+
+
+

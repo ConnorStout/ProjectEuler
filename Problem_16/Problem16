@@ -1,0 +1,20 @@
+
+
+#made my own power calc for funses
+total = [2]
+for x in range(1,1000):
+    up = False
+    for y in range(0,len(total)):
+
+        total[y] = total[y]*2
+        if(up):
+            total[y] = total[y]+1
+            up = False
+        if(total[y]>9 and y!=len(total)-1):
+            up = True
+            total[y] = total[y]-10
+        elif(total[y]>9 and y==len(total)-1):
+            total = total + [1]
+            total[y] = total[y] - 10
+print(sum(total))
+
