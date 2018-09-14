@@ -28,7 +28,6 @@ def getCombos(length):
         array = array + [str(bin(x)[2:].zfill(length))]
     return array[1:]
 def initDict(schema):
-
     dict = {}
     for x in schema:
         dict[str(x.replace('1', str(y)))] = []

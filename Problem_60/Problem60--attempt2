@@ -1,0 +1,102 @@
+import time
+import math
+
+def getPrimes(n):
+
+    prevPrimes = []
+    f = open('primes3.txt', 'r')
+    input = f.readlines()
+    f.close()
+    prevPrimes = [i.replace('\"', '').split(',') for i in input][0]
+    prevPrimes.pop()
+    prevPrimes = [int(i) for i in prevPrimes]
+    count = prevPrimes[-1]
+    while(len(prevPrimes) < n):
+        check = True
+        for x in prevPrimes:
+            if(x > math.sqrt(count)):
+                break
+            if count%x == 0:
+                check = False
+                break
+
+        if check == True:
+            prevPrimes.append(count)
+            print(count)
+
+        count+=1
+    # with open('primes3.txt', 'w') as f:
+    #     for item in prevPrimes:
+    #         f.write("%s," % item)
+    return prevPrimes
+
+def checkForPrime(prime):
+    for x in range(2,int(math.sqrt(prime))+1):
+        if(prime%x == 0):
+            return False
+    return True
+
+def appendNewPrime(listOfPairings,prime,primes,max):
+    count = 0
+    newList = []
+    for x in listOfPairings:
+        check = True
+
+        for y in x:
+            if (prime in x):
+                break
+            pairingA = int(str(prime)+str(y))
+            pairingB = int(str(y)+str(prime))
+            #print(str(pairingA) + ' and ' + str(pairingB))
+            if(pairingA in primes and pairingB in primes):
+                check = True
+            # elif pairingA > max or pairingB > max:
+            #     #print('in second check = ' + str(pairingA) + ' and ' + str(pairingB))
+            #     if(len(x) < 4):
+            #         check = False
+            #         break
+            #     check = checkForPrime(pairingA) and checkForPrime(pairingB)
+            #     if(check==False):
+            #         break
+            else:
+                check = False
+                break
+        if(check == True):
+            for x in listOfPairings[count]:
+                newList.append(x)
+            listOfPairings[count].append(prime)
+            #print('length = ' + str(len(listOfPairings[count])))
+            if(len(listOfPairings[count]) == 5):
+                print(listOfPairings[count])
+                print(sum(listOfPairings[count]))
+                return len(listOfPairings[count])
+
+
+        count = count + 1
+    for x in list(set(newList)):
+        if(x<50):
+            listOfPairings.append([x])
+    if(prime<50):
+        listOfPairings.append([prime])
+    return 0
+
+def solve():
+    starttime = time.time()
+    primes = getPrimes(5000000)
+    setPrimes = set(primes)
+    listOfPairings = []
+    maxPrime = max(primes)
+    for x in primes:
+        #print(x)
+        if(x>999999):
+            print(listOfPairings)
+            break
+        check = appendNewPrime(listOfPairings,x,setPrimes,maxPrime)
+        if(check == 5):
+            break
+
+    print(time.time()-starttime)
+    #print(max)
+
+solve()
+

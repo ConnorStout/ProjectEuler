@@ -1,0 +1,10 @@
+import math
+def checkForPrime(prime):
+    for x in range(2,int(math.sqrt(prime))+1):
+        if(prime%x == 0):
+            return False
+    return True
+#[1453, 1669, 2593, 7573, 7603]
+
+print(checkForPrime(16697603))
+

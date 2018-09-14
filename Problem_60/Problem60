@@ -1,0 +1,62 @@
+import time
+def getPrimes(n):
+    f = open('primes2.txt', 'r')
+    input = f.readlines()
+    f.close()
+    prevPrimes = [i.replace('\"', '').split(',') for i in input][0]
+    prevPrimes.pop()
+    prevPrimes = [int(i) for i in prevPrimes]
+
+    count = prevPrimes[-1]
+    while(len(prevPrimes) < n):
+        check = True
+        for x in prevPrimes:
+            if count%x == 0:
+                check = False
+                break
+
+        if check == True:
+            prevPrimes.append(count)
+
+        count+=1
+    with open('primes2.txt', 'w') as f:
+        for item in prevPrimes:
+            f.write("%s," % item)
+    return prevPrimes
+
+def appendNewPrime(listOfPairings,prime,primes):
+    count = 0
+    for x in listOfPairings:
+        check = True
+        for y in x:
+            pairingA = int(str(prime)+str(y))
+            pairingB = int(str(y)+str(prime))
+            if(pairingA in primes and pairingB in primes):
+                check = True
+            else:
+                check = False
+                break
+        if(check == True):
+            listOfPairings[count] = x + [prime]
+            print('length = ' + str(len(listOfPairings[count])))
+            if(len(listOfPairings[count]) == 4):
+                print(listOfPairings[count])
+                return len(listOfPairings[count])
+
+
+        count = count + 1
+
+    listOfPairings = listOfPairings + [[prime]]
+    return listOfPairings
+
+primes = getPrimes(150000)
+print()
+listOfPairings = []
+
+for x in primes:
+    print(x)
+    listOfPairings = appendNewPrime(listOfPairings,x,primes)
+
+    if(listOfPairings == 4):
+        break
+
